@@ -1,0 +1,28 @@
+const PAGES = [
+  { id: "architecture", path: "/architecture", icon: "layers", title: "7-Layer Architecture", tag: "CORE", color: "cyan",
+    description: "The 2026 reference architecture for hybrid intelligent operations. Data, Knowledge, Model, Framework, Orchestration, Governance, and Application layers with GSI insight carousels.",
+    keywords: "architecture layers reference stack data knowledge model framework orchestration governance application hybrid cloud" },
+  { id: "visa-goldman", path: "/visa-goldman", icon: "account_balance", title: "Visa & Goldman Sachs", tag: "DEEP DIVE", color: "amber",
+    description: "How $3.5B AI platforms and 46K-employee deployments actually work. Timelines, org structures, leadership, and the AI Observatory.",
+    keywords: "visa goldman sachs taneja observatory platform financial services bank" },
+  { id: "inference", path: "/inference", icon: "speed", title: "Inference Economics", tag: "OPEX", color: "red",
+    description: "The OPEX crisis: inference consumes 2/3 of all AI compute. Cost mitigation strategies, specialized platforms, and the shift to smaller proprietary models.",
+    keywords: "inference cost opex economics compute GPU optimization triton tensorrt nim dynamo" },
+  { id: "agents", path: "/agents", icon: "hub", title: "Multi-Agent Protocols", tag: "MCP / A2A", color: "purple",
+    description: "MCP, ACP, and A2A protocols. Orchestration frameworks (LangGraph, CrewAI, n8n). State management with Redis. The end of custom integrations.",
+    keywords: "mcp acp a2a agents protocol orchestration langgraph crewai n8n redis state" },
+  { id: "governance", path: "/governance", icon: "shield", title: "Governance & EU AI Act", tag: "COMPLIANCE", color: "green",
+    description: "EU AI Act enforcement August 2026. 7-step compliance framework, agent control systems, zero trust architectures, and penalties up to 7% of global turnover.",
+    keywords: "governance compliance eu ai act regulation security zero trust audit risk" },
+  { id: "finance", path: "/finance", icon: "swap_horiz", title: "Finance: ISO 20022", tag: "VERTICAL", color: "amber",
+    description: "ISO 20022 migration, GenAI-powered purpose code extraction, agentic data pipelines transforming unstructured remittance fields into active organizational memory.",
+    keywords: "iso 20022 finance payments swift mt mx banking fraud remittance purpose codes" },
+  { id: "lab", path: "/lab", icon: "science", title: "Fraud Detection Lab", tag: "HANDS-ON", color: "green",
+    description: "Full walkthrough: Brev GPU signup, clone NVIDIA Fraud Blueprint, run GNN + XGBoost on synthetic transaction data, analyze results. ~$3 per session.",
+    keywords: "lab brev gpu fraud detection gnn xgboost blueprint synthetic data hands-on tutorial nvidia" },
+  { id: "roles", path: "/roles", icon: "group", title: "Org Structure & Roles", tag: "WORKFORCE", color: "ice",
+    description: "Who works in enterprise MLOps: ML Platform Engineers to Agent Onboarding Specialists. Headcounts, tools, and the 8-step model-to-production workflow.",
+    keywords: "roles org structure workforce ml engineer data scientist mlops platform agent onboarding" },
+];
+
+export default PAGES;
