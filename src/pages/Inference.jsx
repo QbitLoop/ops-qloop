@@ -34,22 +34,41 @@ export default function Inference() {
       </Body>
 
       <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: 20, marginBottom: 24 }}>
-        <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
           <Icon name="trending_up" size={16} color={T.red} /> Cost Escalation Path
         </div>
         {[
-          { stage: "Sandbox / POC", cost: "$200/mo", desc: "Single user, limited queries, development testing", color: T.green },
-          { stage: "Pilot (100 users)", cost: "$2-5K/mo", desc: "Department deployment, moderate query volume", color: T.amber },
-          { stage: "Production (agents)", cost: "$10K+/mo", desc: "Recursive tool calls, agent-to-agent polling, 24/7 uptime", color: T.red },
-          { stage: "Enterprise scale", cost: "$10M+/mo", desc: "Thousands of agents, millions of daily inference calls across business units", color: T.red },
-        ].map((item, i) => (
-          <div key={i} style={{ display: "flex", gap: 16, alignItems: "center", padding: "10px 0", borderBottom: i < 3 ? `1px solid ${T.borderMuted}` : "none" }}>
-            <div style={{ fontFamily: mono, fontSize: 14, fontWeight: 800, color: item.color, minWidth: 90, textAlign: "right" }}>{item.cost}</div>
-            <div style={{ width: 3, height: 32, background: item.color, borderRadius: 2, flexShrink: 0 }} />
-            <div>
-              <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, color: T.text }}>{item.stage}</div>
-              <div style={{ fontFamily: sans, fontSize: 11, color: T.textMuted }}>{item.desc}</div>
+          { stage: "Sandbox / POC", cost: "$200/mo", desc: "Single user, limited queries, development testing", color: T.green, icon: "science", width: "15%" },
+          { stage: "Pilot — 100 users", cost: "$2–5K/mo", desc: "Department deployment, moderate query volume", color: T.amber, icon: "group", width: "35%" },
+          { stage: "Production (agents)", cost: "$10K+/mo", desc: "Recursive tool calls, agent-to-agent polling, 24/7 uptime", color: T.red, icon: "smart_toy", width: "60%" },
+          { stage: "Enterprise scale", cost: "$10M+/mo", desc: "Thousands of agents, millions of daily inference calls", color: T.red, icon: "corporate_fare", width: "100%" },
+        ].map((item, i, arr) => (
+          <div key={i}>
+            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+              {/* Icon node */}
+              <div style={{ width: 32, height: 32, borderRadius: 8, background: `${item.color}12`, border: `1px solid ${item.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Icon name={item.icon} size={16} color={item.color} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                  <span style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, color: T.text }}>{item.stage}</span>
+                  <span style={{ fontFamily: mono, fontSize: 13, fontWeight: 800, color: item.color }}>{item.cost}</span>
+                </div>
+                {/* Escalation bar */}
+                <div style={{ height: 6, background: T.elevated, borderRadius: 3, marginBottom: 4, overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: item.width, background: item.color, borderRadius: 3, transition: "width 0.3s" }} />
+                </div>
+                <div style={{ fontFamily: sans, fontSize: 11, color: T.textMuted }}>{item.desc}</div>
+              </div>
             </div>
+            {i < arr.length - 1 && (
+              <div style={{ display: "flex", alignItems: "center", gap: 6, margin: "6px 0 6px 14px" }}>
+                <Icon name="arrow_downward" size={14} color={T.borderMuted} />
+                <span style={{ fontFamily: mono, fontSize: 9, color: T.textMuted, letterSpacing: "0.3px" }}>
+                  {i === 0 ? "10–25×" : i === 1 ? "2–5×" : "1000×"} cost jump
+                </span>
+              </div>
+            )}
           </div>
         ))}
       </div>

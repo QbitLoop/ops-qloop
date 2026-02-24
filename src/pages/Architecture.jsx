@@ -43,6 +43,33 @@ export default function Architecture() {
         integrated layers — from Active Intelligence at the foundation to Application delivery at the top.
       </Body>
 
+      {/* Mini Visual Stack Overview */}
+      <div style={{ margin: "28px 0 8px", border: `1px solid ${T.border}`, borderRadius: 10, overflow: "hidden" }}>
+        {LAYERS.map((layer, i) => (
+          <div key={i}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "10px 14px",
+              background: i % 2 === 0 ? T.surface : T.bg,
+              borderLeft: `3px solid ${T[layer.color]}`,
+            }}>
+              <span style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, color: `${T[layer.color]}70`, minWidth: 22 }}>{layer.num}</span>
+              <Icon name={layer.icon} size={15} color={T[layer.color]} />
+              <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                <span style={{ fontFamily: mono, fontSize: 12, fontWeight: 700, color: T[layer.color] }}>{layer.name}</span>
+                {layer.isNew && <span style={{ fontFamily: mono, fontSize: 9, color: T.green, background: `${T.green}15`, border: `1px solid ${T.green}30`, padding: "1px 5px", borderRadius: 3, letterSpacing: "0.4px" }}>NEW 2026</span>}
+                <span style={{ fontFamily: sans, fontSize: 11, color: T.textMuted }}>{layer.sub}</span>
+              </div>
+              <Icon name="chevron_right" size={14} color={`${T[layer.color]}50`} />
+            </div>
+            {i < LAYERS.length - 1 && (
+              <div style={{ display: "flex", alignItems: "center", padding: "0 18px", height: 16, background: T.bg }}>
+                <div style={{ width: 1, height: "100%", background: T.borderMuted, marginLeft: 22 + 10 + 15 / 2 }} />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
       {/* Key Stats */}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", margin: "32px 0" }}>
         <Stat value="$3.5B" label="Visa spent rebuilding its AI data platform" color={T.cyan} />

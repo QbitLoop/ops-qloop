@@ -28,6 +28,54 @@ export default function Agents() {
       {/* Protocol Comparison */}
       <SectionHeader color={T.cyan}>The Three Protocols</SectionHeader>
 
+      {/* Protocol Flow Overview */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 28 }}>
+        {[
+          { label: "MCP", sub: "Agent ↔ Tools", creator: "Anthropic", color: T.cyan,
+            left: { icon: "smart_toy", label: "Agent" },
+            right: { icon: "build", label: "Tools & Data" },
+            arrow: "link", bidirectional: true },
+          { label: "ACP", sub: "Agent ↔ Agent", creator: "Intra-Org", color: T.green,
+            left: { icon: "smart_toy", label: "Agent A" },
+            right: { icon: "smart_toy", label: "Agent B" },
+            arrow: "forum", bidirectional: true },
+          { label: "A2A", sub: "Cross-Org", creator: "Google", color: T.amber,
+            left: { icon: "domain", label: "Org A Agent" },
+            right: { icon: "domain", label: "Org B Agent" },
+            arrow: "swap_calls", bidirectional: true },
+        ].map((p, i) => (
+          <div key={i} style={{ background: T.surface, border: `1px solid ${p.color}30`, borderRadius: 8, padding: 12 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <span style={{ fontFamily: mono, fontSize: 12, fontWeight: 800, color: p.color }}>{p.label}</span>
+              <span style={{ fontFamily: mono, fontSize: 9, color: T.textMuted }}>{p.creator}</span>
+            </div>
+            {/* Flow diagram */}
+            <div style={{ display: "flex", alignItems: "center", gap: 6, justifyContent: "space-between" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                <div style={{ width: 32, height: 32, borderRadius: 8, background: `${p.color}12`, border: `1px solid ${p.color}30`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name={p.left.icon} size={16} color={p.color} />
+                </div>
+                <span style={{ fontFamily: mono, fontSize: 9, color: T.textMuted, textAlign: "center" }}>{p.left.label}</span>
+              </div>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+                <div style={{ display: "flex", alignItems: "center", width: "100%", justifyContent: "center", gap: 2 }}>
+                  <div style={{ flex: 1, height: 1, background: `${p.color}50` }} />
+                  <Icon name={p.arrow} size={12} color={p.color} />
+                  <div style={{ flex: 1, height: 1, background: `${p.color}50` }} />
+                </div>
+                <span style={{ fontFamily: mono, fontSize: 8, color: p.color, letterSpacing: "0.3px" }}>{p.sub}</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                <div style={{ width: 32, height: 32, borderRadius: 8, background: `${p.color}12`, border: `1px solid ${p.color}30`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Icon name={p.right.icon} size={16} color={p.color} />
+                </div>
+                <span style={{ fontFamily: mono, fontSize: 9, color: T.textMuted, textAlign: "center" }}>{p.right.label}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {[
         { name: "Model Context Protocol (MCP)", creator: "Anthropic", color: T.cyan, icon: "link",
           how: "JSON-RPC 2.0", scope: "Agent \u2194 Tools & Data",
