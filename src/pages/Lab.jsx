@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { useTheme } from "../ThemeContext";
 import { mono, sans } from "../tokens";
-import { Stat, Callout, Divider, SectionHeader, PageTitle, Body, Tag, CodePill, Footer } from "../components/UI";
+import { Stat, Callout, Divider, SectionHeader, PageTitle, Body, Tag, Footer } from "../components/UI";
 import Icon from "../components/Icon";
 import diagramImg from "../assets/diagram.jpg";
+
+function IC({ children }) {
+  const { T } = useTheme();
+  return (
+    <code style={{
+      fontFamily: mono, fontSize: 12, background: `${T.border}50`,
+      border: `1px solid ${T.borderMuted}`, borderRadius: 4,
+      padding: "1px 6px", color: T.ice,
+    }}>{children}</code>
+  );
+}
 
 function CodeBlock({ children, title }) {
   const { T } = useTheme();
@@ -216,7 +227,7 @@ export default function Lab() {
             </div>
             <Callout color={T.amber}>
               <strong style={{ color: T.amber }}>IMPORTANT:</strong> This key is used as the{" "}
-              <CodePill>NVIDIA_API_KEY</CodePill> environment variable throughout the workflow.
+              <IC>NVIDIA_API_KEY</IC> environment variable throughout the workflow.
             </Callout>
           </>,
         },
@@ -251,11 +262,11 @@ mamba env create -f conda/notebook_env.yaml`}</CodeBlock>
         {
           step: "5", title: "Authenticate Docker with NGC", color: T.red,
           content: <>
-            <Body>
+            <div style={{ fontFamily: sans, fontSize: 13, color: T.textSec, lineHeight: 1.7, marginBottom: 12 }}>
               Pull the training and inference containers from the NVIDIA container registry (nvcr.io).
-              Uses the same <CodePill>NVIDIA_API_KEY</CodePill> from Step 3.
-            </Body>
-            <CodeBlock title="terminal">{`echo "${NVIDIA_API_KEY}" | docker login nvcr.io -u '$oauthtoken' --password-stdin`}</CodeBlock>
+              Uses the same <IC>NVIDIA_API_KEY</IC> from Step 3.
+            </div>
+            <CodeBlock title="terminal">{`echo "$NVIDIA_API_KEY" | docker login nvcr.io -u '$oauthtoken' --password-stdin`}</CodeBlock>
             <div style={{ fontFamily: sans, fontSize: 12, color: T.textSec, lineHeight: 1.6 }}>
               You should see <strong style={{ color: T.green }}>Login Succeeded</strong>. If it fails, verify your API key
               and that your organization has NVIDIA AI Enterprise (NVAIE) enabled.
@@ -284,8 +295,8 @@ jupyter notebook financial-fraud-usage.ipynb`}</CodeBlock>
 jupyter-lab --ip=* --no-browser`}</CodeBlock>
 
             <div style={{ fontFamily: sans, fontSize: 13, color: T.textSec, lineHeight: 1.7, marginBottom: 12 }}>
-              Jupyter will output a URL — typically <CodePill>http://localhost:8888/</CodePill>.
-              Open it in a browser and run through <strong style={{ color: T.text }}>financial-fraud-usage.ipynb</strong>.
+              Jupyter will output a URL — typically <IC>http://localhost:8888/</IC>.
+              Open it in a browser and run through <IC>financial-fraud-usage.ipynb</IC>.
             </div>
 
             <Callout color={T.green}>
