@@ -189,7 +189,7 @@ export function Footer() {
       flexWrap: "wrap", gap: 12,
     }}>
       <div style={{ fontFamily: mono, fontSize: 11, color: T.textMuted }}>
-        <span style={{ color: T.cyan }}>ops.qloop.com</span> / waseem qbitloop
+        <span style={{ color: T.cyan }}>AIOps in 2026+</span> / ops.qbitloop.com
       </div>
       <div style={{ display: "flex", gap: 16 }}>
         {[

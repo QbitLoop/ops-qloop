@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
 import { mono, sans } from "../tokens";
 import { Stat, Callout, Divider, SectionHeader, PageTitle, Body, Tag, Footer } from "../components/UI";
@@ -345,6 +346,30 @@ jupyter-lab --ip=* --no-browser`}</CodeBlock>
         <a href="https://build.nvidia.com/nvidia/financial-fraud-detection" target="_blank" rel="noreferrer"
           style={{ color: T.cyan }}>build.nvidia.com</a>
       </Callout>
+
+      {/* Full Guide CTA */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        background: `${T.green}08`, border: `1px solid ${T.green}30`,
+        borderRadius: 10, padding: "18px 20px", margin: "32px 0",
+      }}>
+        <div>
+          <div style={{ fontFamily: mono, fontSize: 13, fontWeight: 700, color: T.green, marginBottom: 4 }}>
+            Builder & Learner Deep Dive
+          </div>
+          <div style={{ fontFamily: sans, fontSize: 12, color: T.textSec }}>
+            Architecture rationale, concept explainers, full command walkthrough, production path, and customer FAQ for NGC engagements.
+          </div>
+        </div>
+        <Link to="/lab/guide" style={{
+          display: "flex", alignItems: "center", gap: 6,
+          background: T.green, color: "#000", textDecoration: "none",
+          fontFamily: mono, fontSize: 12, fontWeight: 700,
+          padding: "9px 16px", borderRadius: 7, flexShrink: 0,
+        }}>
+          Full Guide <Icon name="arrow_forward" size={14} color="#000" />
+        </Link>
+      </div>
 
       <Footer />
     </div>

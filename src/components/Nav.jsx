@@ -35,7 +35,7 @@ export default function Nav() {
           letterSpacing: "1.5px", textTransform: "uppercase",
           display: "flex", alignItems: "center", gap: 6,
         }}>
-          <span style={{ color: T.textMuted }}>//</span> ops.qloop
+          <span style={{ color: T.textMuted }}>//</span> AIOps in 2026+
         </Link>
 
         {/* Desktop */}

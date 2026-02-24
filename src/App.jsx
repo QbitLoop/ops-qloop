@@ -10,6 +10,7 @@ import Agents from "./pages/Agents";
 import Governance from "./pages/Governance";
 import Finance from "./pages/Finance";
 import Lab from "./pages/Lab";
+import LabGuide from "./pages/LabGuide";
 import Roles from "./pages/Roles";
 
 function ScrollToTop() {
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/governance" element={<Governance />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/lab" element={<Lab />} />
+          <Route path="/lab/guide" element={<LabGuide />} />
           <Route path="/roles" element={<Roles />} />
         </Routes>
       </main>
