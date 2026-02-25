@@ -41,11 +41,21 @@ export default function VisaGoldman() {
           { year: "Feb 2023", event: "Every Visa employee gets access to internal ChatGPT instance. Early Microsoft Copilot adopter.", color: T.green },
           { year: "2024-25", event: "100+ AI-powered products in production. 2,500+ engineers on AI. $40B in fraud prevented annually.", color: T.green },
           { year: "Apr 2025", event: "Launches Visa Intelligent Commerce \u2014 opens payment network to AI agents (Anthropic, OpenAI, etc.).", color: T.cyan },
-        ].map((item, i) => (
-          <div key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start", marginBottom: 6 }}>
-            <div style={{ minWidth: 70, fontFamily: mono, fontSize: 11, fontWeight: 700, color: item.color, paddingTop: 2 }}>{item.year}</div>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color, marginTop: 5, flexShrink: 0 }} />
-            <div style={{ fontFamily: sans, fontSize: 12, color: T.textSec, lineHeight: 1.5 }}>{item.event}</div>
+        ].map((item, i, arr) => (
+          <div key={i}>
+            <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+              <div style={{ minWidth: 64, fontFamily: mono, fontSize: 10, fontWeight: 700, color: item.color, background: `${item.color}12`, borderRadius: 4, padding: "2px 5px", textAlign: "center", flexShrink: 0, marginTop: 2 }}>{item.year}</div>
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: item.color, marginTop: 3, border: `2px solid ${item.color}50`, flexShrink: 0 }} />
+              <div style={{ fontFamily: sans, fontSize: 11.5, color: T.textSec, lineHeight: 1.5, paddingBottom: i < arr.length - 1 ? 8 : 0 }}>{item.event}</div>
+            </div>
+            {i < arr.length - 1 && (
+              <div style={{ height: 8, display: "flex" }}>
+                <div style={{ minWidth: 64 + 12 }} />
+                <div style={{ width: 10, display: "flex", justifyContent: "center" }}>
+                  <div style={{ width: 2, height: "100%", background: T.borderMuted }} />
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -123,18 +133,28 @@ export default function VisaGoldman() {
           <Icon name="architecture" size={16} color={T.cyan} /> GS AI Platform Architecture
         </div>
         {[
-          { label: "User Interface", desc: "Chat interface + developer tools (GitHub Copilot) + role-specific copilots", color: T.cyan },
-          { label: "Internal Gateway", desc: "Adds proprietary context via RAG. Pulls from Legend, research archives, codebases", color: T.amber },
-          { label: "Multi-Model Router", desc: "Routes to best model: GPT-4o for general, Gemini for analysis, Llama for specific tasks, Claude for reasoning", color: T.green },
-          { label: "Governance Layer", desc: "Data access controls, compliance logging, audit trails", color: T.red },
-          { label: "Fine-Tuning Pipeline", desc: "Open-source + internal models trained on GS codebases, research, market data", color: T.purple },
-        ].map((item, i) => (
-          <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 8 }}>
-            <div style={{ width: 4, height: 40, background: item.color, borderRadius: 2, flexShrink: 0 }} />
-            <div>
-              <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 700, color: item.color }}>{item.label}</div>
-              <div style={{ fontFamily: sans, fontSize: 11, color: T.textMuted, lineHeight: 1.4 }}>{item.desc}</div>
+          { label: "User Interface", desc: "Chat interface + developer tools (GitHub Copilot) + role-specific copilots", color: T.cyan, icon: "dashboard" },
+          { label: "Internal Gateway", desc: "Adds proprietary context via RAG. Pulls from Legend, research archives, codebases", color: T.amber, icon: "hub" },
+          { label: "Multi-Model Router", desc: "Routes to best model: GPT-4o for general, Gemini for analysis, Llama for specific tasks, Claude for reasoning", color: T.green, icon: "account_tree" },
+          { label: "Governance Layer", desc: "Data access controls, compliance logging, audit trails", color: T.red, icon: "shield" },
+          { label: "Fine-Tuning Pipeline", desc: "Open-source + internal models trained on GS codebases, research, market data", color: T.purple, icon: "model_training" },
+        ].map((item, i, arr) => (
+          <div key={i}>
+            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+              <div style={{ width: 5, alignSelf: "stretch", minHeight: 44, background: item.color, borderRadius: 2, flexShrink: 0 }} />
+              <div style={{ width: 32, height: 32, borderRadius: 8, background: `${item.color}12`, border: `1px solid ${item.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Icon name={item.icon} size={16} color={item.color} />
+              </div>
+              <div>
+                <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 700, color: item.color }}>{item.label}</div>
+                <div style={{ fontFamily: sans, fontSize: 11, color: T.textMuted, lineHeight: 1.4 }}>{item.desc}</div>
+              </div>
             </div>
+            {i < arr.length - 1 && (
+              <div style={{ height: 8, paddingLeft: 29, display: "flex", alignItems: "center" }}>
+                <Icon name="arrow_downward" size={10} color={T.textMuted} />
+              </div>
+            )}
           </div>
         ))}
       </div>

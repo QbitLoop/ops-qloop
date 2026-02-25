@@ -32,6 +32,29 @@ export default function Governance() {
         this rigorous, continuous compliance framework:
       </Body>
 
+      {/* Compliance Phase Flow */}
+      <div style={{ display: "flex", alignItems: "stretch", gap: 4, margin: "16px 0 20px" }}>
+        {[
+          { phase: "Assess", steps: "Steps 1–2", icon: "inventory_2", color: T.red },
+          { arrow: true },
+          { phase: "Build", steps: "Steps 3–4", icon: "construction", color: T.amber },
+          { arrow: true },
+          { phase: "Validate", steps: "Step 5", icon: "fact_check", color: T.green },
+          { arrow: true },
+          { phase: "Monitor", steps: "Steps 6–7", icon: "monitoring", color: T.cyan },
+        ].map((item, i) => item.arrow ? (
+          <div key={i} style={{ display: "flex", alignItems: "center" }}>
+            <Icon name="chevron_right" size={18} color={T.textMuted} />
+          </div>
+        ) : (
+          <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 5, background: `${item.color}08`, border: `1px solid ${item.color}25`, borderTop: `3px solid ${item.color}`, borderRadius: 8, padding: "10px 8px" }}>
+            <Icon name={item.icon} size={18} color={item.color} />
+            <div style={{ fontFamily: mono, fontSize: 11, fontWeight: 700, color: item.color }}>{item.phase}</div>
+            <div style={{ fontFamily: sans, fontSize: 9.5, color: T.textMuted }}>{item.steps}</div>
+          </div>
+        ))}
+      </div>
+
       {[
         { step: "1", title: "Risk Assessment & Inventory", desc: "Comprehensive AI inventory audits. Robust risk management systems identifying potential harms and documenting mitigation effectiveness.", icon: "inventory_2", color: T.red },
         { step: "2", title: "Data Governance & Bias Mitigation", desc: "Examine datasets for historical biases. Ensure quality, relevance, and representativeness of input data to minimize discriminatory outcomes. GDPR-level rigor.", icon: "dataset", color: T.amber },

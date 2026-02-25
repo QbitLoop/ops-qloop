@@ -33,6 +33,29 @@ export default function Finance() {
         decades of legacy free-text unstructured data into rigid new formats.
       </Body>
 
+      {/* MT→MX Pipeline Flow */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6, margin: "20px 0 24px", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: "18px 16px" }}>
+        {[
+          { icon: "description", label: "Legacy MT", sub: "SWIFT free-text", color: T.red },
+          { arrow: true, color: T.amber },
+          { icon: "auto_fix_high", label: "AI Translation", sub: "LLM + middleware", color: T.amber },
+          { arrow: true, color: T.green },
+          { icon: "verified", label: "ISO 20022 MX", sub: "Structured XML", color: T.green },
+        ].map((item, i) => item.arrow ? (
+          <div key={i} style={{ display: "flex", alignItems: "center", paddingBottom: 22 }}>
+            <Icon name="arrow_forward" size={15} color={item.color} />
+          </div>
+        ) : (
+          <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+            <div style={{ width: 44, height: 44, borderRadius: 10, background: `${item.color}15`, border: `1px solid ${item.color}40`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Icon name={item.icon} size={20} color={item.color} />
+            </div>
+            <div style={{ fontFamily: mono, fontSize: 11, fontWeight: 700, color: item.color, textAlign: "center" }}>{item.label}</div>
+            <div style={{ fontFamily: sans, fontSize: 10, color: T.textMuted, textAlign: "center", lineHeight: 1.3 }}>{item.sub}</div>
+          </div>
+        ))}
+      </div>
+
       <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: 20, marginBottom: 24 }}>
         <div style={{ fontFamily: mono, fontSize: 12, fontWeight: 600, color: T.text, marginBottom: 14, display: "flex", alignItems: "center", gap: 8 }}>
           <Icon name="swap_horiz" size={16} color={T.amber} /> MT \u2192 MX Translation Challenges
@@ -60,6 +83,31 @@ export default function Finance() {
         fields, extracting precise intent and purpose codes with near-perfect accuracy. This agentic pipeline
         transforms raw transaction data into "active organizational memory."
       </Body>
+
+      {/* Agentic Pipeline Flow */}
+      <div style={{ display: "flex", alignItems: "center", gap: 4, margin: "16px 0 20px", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, padding: "16px 12px" }}>
+        {[
+          { icon: "text_snippet", label: "Raw Remittance", sub: "Free-text input", color: T.amber },
+          { arrow: true, color: T.green },
+          { icon: "psychology", label: "LLM Parser", sub: "430K+ variations", color: T.green },
+          { arrow: true, color: T.cyan },
+          { icon: "label", label: "Purpose Codes", sub: "ISO 20022 intent", color: T.cyan },
+          { arrow: true, color: T.purple },
+          { icon: "database", label: "Active Memory", sub: "Org knowledge", color: T.purple },
+        ].map((item, i) => item.arrow ? (
+          <div key={i} style={{ display: "flex", alignItems: "center", paddingBottom: 22 }}>
+            <Icon name="arrow_forward" size={13} color={item.color} />
+          </div>
+        ) : (
+          <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 5 }}>
+            <div style={{ width: 38, height: 38, borderRadius: 8, background: `${item.color}15`, border: `1px solid ${item.color}35`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Icon name={item.icon} size={17} color={item.color} />
+            </div>
+            <div style={{ fontFamily: mono, fontSize: 10, fontWeight: 700, color: item.color, textAlign: "center", lineHeight: 1.2 }}>{item.label}</div>
+            <div style={{ fontFamily: sans, fontSize: 9.5, color: T.textMuted, textAlign: "center", lineHeight: 1.3 }}>{item.sub}</div>
+          </div>
+        ))}
+      </div>
 
       {[
         { title: "Purpose Code Extraction", desc: "LLMs parse free-text remittance fields to extract intent — mapping 430K+ keyword variations into structured ISO 20022 purpose codes. Near-perfect accuracy replaces manual classification.", icon: "auto_fix_high", color: T.green },
